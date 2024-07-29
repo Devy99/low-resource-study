@@ -1,0 +1,27 @@
+;; Trims text to be at most `max_length`, without splitting apart words.
+(define (trim text max_length)
+ (if (<= (string-length text) max_length)
+     text
+     (let ([last-char (string-ref text (- (string-length text) 1))])
+       (if (or (and (char-alphabetic? last-char)
+                    (char-alphabetic? (string-ref text (- (string-length text) 2))))
+               (not (char-alphabetic? last-char)))
+           (substring text 0 max_length)
+           (let ([first-char (string-ref text 0)])
+             (if (and (char-alphabetic? first-char)
+                      (char-alphabetic? (string-ref text 1)))
+                 (trim (substring text 1) max_length)
+                 (trim (substring text 2) max_length)))))))
+
+;;  auxiliary function for find_all_with_dict_regex
+;; given the input list of tuple spans, when there are two spans that span on one another, 
+;; eliminate the smallest from the list
+(define (deduplicate_non_disjoint_tuple_spans list_tuple_span)
+    (if (> (length list_tuple_span) 1)
+      (if (<= (car (car list_tuple_span)) 
+            (cadr (car list_tuple_span)))
+          (deduplicate_non_disjoint_tuple_spans (cdr list_tuple_span))
+          (cons (car list_tuple_span) 
+                (deduplicate_non_disjoint_tuple_spans (cdr list_tuple_span))))
+      list_tuple_span))
+

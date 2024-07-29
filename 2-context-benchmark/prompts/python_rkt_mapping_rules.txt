@@ -1,0 +1,103 @@
+Here are some general mapping rules to translate Python code into Racket code:
+1. Variable Declaration: No change needed.
+Python: <VAR> = 1
+Racket: (define <VAR> 1)
+
+2. Function Declaration: Replace def with define and add parentheses around the function name and parameters.
+Python: def <FUNCTION_NAME>(<PARAMETERS>): <BODY>
+Racket: (define (<FUNCTION_NAME> <PARAMETERS>) <BODY>)
+
+3. For Loop: Use Racket's built-in for loop.
+Python: for <VAR> in range(<N>): <BODY>
+Racket: (for ([<VAR> (in-range <N>)]) <BODY>)
+
+4. If Statement: Replace if, elif, and else with cond. 
+Python: if <CONDITION>: <BODY>
+Racket: (cond [(<CONDITION>) <BODY>])
+
+5. List Declaration: Replace [] with (list).
+Python: <VAR> = [<ELEMENTS>]
+Racket: (define <VAR> (list <ELEMENTS>))
+
+6. Indexing: Replace [] with list-ref. Both Python and Racket are 0-based.
+Python: <LIST>[<INDEX>]
+Racket: (list-ref <LIST> <INDEX>)
+
+7. Print Statement: Replace print with display.
+Python: print(<VAR>)
+Racket: (display <VAR>)
+
+8. String Interpolation: Replace f\"<TEXT> {<VAR>}\" with (format \"<TEXT> ~a\" <VAR>).
+Python: f\"<TEXT> {<VAR>}\"
+Racket: (format \"<TEXT> ~a\" <VAR>)
+
+9. Comments: Replace # with ;.
+Python: # <COMMENT>
+Racket: ; <COMMENT>
+
+10. While Loop: Replace while loop with a recursive function.
+Python: while <CONDITION>: <BODY>
+Racket: (define (loop) (if <CONDITION> (begin <BODY> (loop))))
+
+11. Try/Except (Error Handling): Replace try: with with-handlers, except with exn:fail?, and add end at the end.
+Python: try: <BODY> except <EXCEPTION>: <HANDLER>
+Racket: (with-handlers ([exn:fail? (lambda (exn) <HANDLER>)]) <BODY>)
+
+12. Importing Modules: Replace import with require.
+Python: import <MODULE>
+Racket: (require <MODULE-PATH>)
+
+13. List Comprehension: Replace [<EXPRESSION> for <VAR> in <ITERABLE>] with (for/list ([<VAR> <ITERABLE>]) <EXPRESSION>).
+Python: [<EXPRESSION> for <VAR> in <ITERABLE>]
+Racket: (for/list ([<VAR> <ITERABLE>]) <EXPRESSION>)
+
+14. Dictionary Declaration: Replace {<KEY>: <VALUE>} with (hash <KEY> <VALUE>).
+Python: <VAR> = {<KEY>: <VALUE>}
+Racket: (define <VAR> (hash <KEY> <VALUE>))
+
+15. Tuple Declaration: Replace () with list.
+Python: <VAR> = (<ELEMENTS>,)
+Racket: (define <VAR> (list <ELEMENTS>))
+
+16. Set Declaration: Replace set([<ELEMENTS>]) with (set <ELEMENTS>).
+Python: <VAR> = set([<ELEMENTS>])
+Racket: (define <VAR> (set <ELEMENTS>))
+
+17. Lambda Functions: Replace Python's lambda functions with Racket's lambda forms.
+Python: <VAR> = lambda <PARAMETERS>: <BODY>
+Racket: (define <VAR> (lambda (<PARAMETERS>) <BODY>))
+
+18. Type Declaration: Python is dynamically typed, so you don't declare types. In Racket, you can use contracts to enforce types.
+Python: Python is dynamically typed, so you don't declare types
+Racket: (define/contract <VAR> <TYPE> <VALUE>)
+
+19. Multiple Return Values: Replace return <VALUE1>, <VALUE2> with (values <VALUE1> <VALUE2>).
+Python: return <VALUE1>, <VALUE2>
+Racket: (values <VALUE1> <VALUE2>)
+
+20. Complex Numbers: Replace j with i.
+Python: <VAR> = <REAL_PART> + <IMAGINARY_PART>j
+Racket: (define <VAR> (+ <REAL_PART> (* <IMAGINARY_PART> i)))
+
+21. Concatenation: Replace + with string-append.
+Python: <STRING1> + <STRING2>
+Racket: (string-append <STRING1> <STRING2>)
+
+22. Exponentiation: Replace ** with expt.
+Python: <BASE> ** <EXPONENT>
+Racket: (expt <BASE> <EXPONENT>)
+
+23. Division: Replace / with / for true division. For floor division, use quotient.
+Python: <NUM1> / <NUM2> (true division)
+Racket: (/ <NUM1> <NUM2>) (true division), (quotient <NUM1> <NUM2>) (floor division)
+
+24. Equality Testing: Replace == with equal?.
+Python: <VAR1> == <VAR2> (value equality)
+Racket: (equal? <VAR1> <VAR2>) (value equality)
+
+25. Inequality Testing: Replace != with not and equal?.
+Python: <VAR1> != <VAR2> (value inequality)
+Racket: (not (equal? <VAR1> <VAR2>)) (value inequality)
+
+Employ these rules to generate Racket code, leveraging your Python knowledge. First try to understand the code and then convert it to Racket.
+

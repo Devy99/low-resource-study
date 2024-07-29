@@ -1,0 +1,101 @@
+Here are some general mapping rules to translate Python code into R code:
+1. Variable Declaration: Replace = with <-.
+Python: <VAR> = 1
+R: <VAR> <- 1
+
+2. Function Declaration: Replace def with function and : with {}.
+Python: def <FUNCTION_NAME>(<PARAMETERS>): <BODY>
+R: <FUNCTION_NAME> <- function(<PARAMETERS>) {<BODY>}
+
+3. For Loop: Replace for <VAR> in <ITERABLE>: with for(<VAR> in <ITERABLE>){}.
+Python: for <VAR> in <ITERABLE>: <BODY>
+R: for(<VAR> in <ITERABLE>){ <BODY> }
+
+4. If Statement: Replace : with {}.
+Python: if <CONDITION>: <BODY>
+R: if(<CONDITION>){ <BODY> }
+
+5. Array Declaration: Replace [] with c().
+Python: <VAR> = [<ELEMENTS>]
+R: <VAR> <- c(<ELEMENTS>)
+
+6. Indexing: Python is 0-based, while R is 1-based.
+Python: <ARRAY>[0]
+R: <ARRAY>[1]
+
+7. Print Statement: Replace print() with cat().
+Python: print(<VAR>)
+R: cat(<VAR>)
+
+8. String Interpolation: Replace f"<TEXT> {<VAR>}" with paste("<TEXT>", <VAR>).
+Python: f"<TEXT> {<VAR>}"
+R: paste("<TEXT>", <VAR>)
+
+9. Comments: Replace ''' or """ with #' for multiline comments. For single line comments, no change needed. 
+
+10. While Loop: Replace while <CONDITION>: with while(<CONDITION>){}.
+Python: while <CONDITION>: <BODY>
+R: while(<CONDITION>){ <BODY> }
+
+11. Try/Except (Error Handling): Replace try: with tryCatch(), except with error=function(e).
+Python: try: <BODY> except <EXCEPTION>: <HANDLER>
+R: tryCatch(<BODY>, error=function(e) <HANDLER>)
+
+12. Importing Modules: Replace import with library().
+Python: import <MODULE>
+R: library(<MODULE>)
+
+13. List Comprehension: Replace [<EXPRESSION> for <VAR> in <ITERABLE>] with sapply(<ITERABLE>, function(<VAR>) <EXPRESSION>).
+Python: [<EXPRESSION> for <VAR> in <ITERABLE>]
+R: sapply(<ITERABLE>, function(<VAR>) <EXPRESSION>)
+
+14. Dictionary Declaration: Replace {<KEY>: <VALUE>} with list(<KEY> = <VALUE>).
+Python: <VAR> = {<KEY>: <VALUE>}
+R: <VAR> <- list(<KEY> = <VALUE>)
+
+15. Tuple Declaration: Replace (<ELEMENTS>,) with list(<ELEMENTS>).
+Python: <VAR> = (<ELEMENTS>,)
+R: <VAR> <- list(<ELEMENTS>)
+
+16. Set Declaration: Replace set([<ELEMENTS>]) with unique(c(<ELEMENTS>)).
+Python: <VAR> = set([<ELEMENTS>])
+R: <VAR> <- unique(c(<ELEMENTS>))
+
+17. Lambda Functions: Replace lambda with function.
+Python: <VAR> = lambda <PARAMETERS>: <BODY>
+R: <VAR> <- function(<PARAMETERS>) <BODY>
+
+18. Type Declaration: Python is dynamically typed, so you don't declare types. In R, you can use as.<TYPE>() to convert types.
+Python: Python is dynamically typed, so you don't declare types
+R: <VAR> <- as.<TYPE>(<VALUE>)
+
+19. Multiple Return Values: Replace return <VALUE1>, <VALUE2> with list(<VALUE1>, <VALUE2>).
+Python: return <VALUE1>, <VALUE2>
+R: return(list(<VALUE1>, <VALUE2>))
+
+20. Complex Numbers: Replace j with i.
+Python: <VAR> = <REAL_PART> + <IMAGINARY_PART>j
+R: <VAR> <- <REAL_PART> + <IMAGINARY_PART>i
+
+21. Concatenation: Replace + with paste().
+Python: <STRING1> + <STRING2>
+R: paste(<STRING1>, <STRING2>)
+
+22. Exponentiation: Replace ** with ^.
+Python: <BASE> ** <EXPONENT>
+R: <BASE> ^ <EXPONENT>
+
+23. Division: Replace / with %/% for floor division. For true division, no change needed.
+Python: <NUM1> / <NUM2> (true division)
+R: <NUM1> %/% <NUM2> (floor division), <NUM1> / <NUM2> (true division)
+
+24. Equality Testing: No change needed for value equality. For identity equality, replace is with identical().
+Python: <VAR1> == <VAR2> (value equality), <VAR1> is <VAR2> (identity equality)
+R: <VAR1> == <VAR2> (value equality), identical(<VAR1>, <VAR2>) (identity equality)
+
+25. Inequality Testing: No change needed for value inequality. For identity inequality, replace is not with !identical().
+Python: <VAR1> != <VAR2> (value inequality), <VAR1> is not <VAR2> (identity inequality)
+R: <VAR1> != <VAR2> (value inequality), !identical(<VAR1>, <VAR2>) (identity inequality)
+
+Employ these rules to generate R code, leveraging your Python knowledge. First try to understand the code and then convert it to R.
+

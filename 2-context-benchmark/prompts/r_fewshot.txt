@@ -1,0 +1,41 @@
+#     Calculates the dot product of two vectors
+dot_product <- function(vector_one, vector_two) {
+        # initialize total sum
+    total <- 0
+    # loop through each position in vectors
+    for (i in 1:length(vector_one)) {
+            # add to total sum
+        total <- total + vector_one[i] * vector_two[i]
+    }
+    # return total sum
+    return(total)
+}
+
+#     SignalVine has it's own types that we'll map over to R primatives.
+convert_sv_types <- function(field_dict) {
+      new_dict <- list()
+  for (key in names(field_dict)) {
+        value <- field_dict[key]
+    new_dict[[key]] <- list()
+    required <- if (grepl("Maybe", value)) {
+          FALSE
+    } else {
+          TRUE
+    }
+    type <- if (grepl("Boolean", value)) {
+          "bool"
+    } else if (grepl("Numeric", value)) {
+          "int"
+    } else if (grepl("Float", value)) {
+          "float"
+    } else if (grepl("Date", value)) {
+          "str"
+    } else {
+          "str"
+    }
+    new_dict[[key]][["type"]] <- type
+    new_dict[[key]][["required"]] <- required
+  }
+  new_dict
+}
+
