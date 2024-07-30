@@ -62,7 +62,7 @@ We conducted our experiments on a cluster featuring the following GPUs:
 It is possible to replicate our experiments with a different hardware infrastructure by adjusting inference and training parameters accordingly (see more in [Training](#training) section).
 
 ## Datasets and materials
-All datasets and results from this study are available in our [Zenodo repository](TODO).
+All datasets and results from this study are available in our [Zenodo repository](https://doi.org/10.5281/zenodo.13128630).
 
 In particular, the repository is structured as follows:
 - **prompt-prefixes**: list of prompts prepended to the code generation instruction for the in-context learning experiments (translation examples, translation rules, and few-shot)
