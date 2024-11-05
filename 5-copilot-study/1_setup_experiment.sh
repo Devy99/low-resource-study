@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Create 20 directories named copilot_study_1, copilot_study_2, ..., copilot_study_20
-for i in {1..20}; do
+# Create 50 directories named copilot_study_1, copilot_study_2, ..., copilot_study_50
+for i in {1..50}; do
 DIR_NAME="copilot_study_$i"
   mkdir -p $DIR_NAME
   echo "Created directory $DIR_NAME"

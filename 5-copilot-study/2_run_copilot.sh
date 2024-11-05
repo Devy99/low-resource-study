@@ -11,7 +11,7 @@ SCRIPT_DIRS=(
 )
 
 # Iterate over the experiment directories
-for i in {1..20}; do
+for i in {1..50}; do
     EXPERIMENT_DIR="copilot_study_$i"
     echo "Running experiment $EXPERIMENT_DIR"
     cd $EXPERIMENT_DIR
