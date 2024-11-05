@@ -35,13 +35,6 @@ for (technique1 in techniques) {
           # Load the data
           technique1_pass=data[which(data["language"]==lng & data["model"]==model & data["technique"]==technique1),]$pass
           technique2_pass=data[which(data["language"]==lng & data["model"]==model & data["technique"]==technique2),]$pass
-
-          # If one of the techniques is Copilot, limit pass data of the other technique to only 20 values
-          if (technique1 == 'copilot') {
-            technique2_pass=technique2_pass[1:20]
-          } else if (technique2 == 'copilot') {
-            technique1_pass=technique1_pass[1:20]
-          }
                 
           # McNemar test
           mn=mcnemar.exact(technique2_pass,technique1_pass)
@@ -61,9 +54,6 @@ for (technique1 in techniques) {
     res$p.value[which(res$technique1 == technique1 & res$technique2 == technique2)]= p.adjust(res$p.value[which(res$technique1 == technique1 & res$technique2 == technique2)], method = "BH")
   }
 }
-
-# Adjust p-values
-res$p.value= p.adjust(res$p.value, method = "BH")
 
 # Generate the dataframes and export to csv
 res=data.frame(res)

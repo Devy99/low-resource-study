@@ -10,16 +10,16 @@ def count_problems(input_file):
     return problem_counts
 
 def filter_csv(input_file, output_file, problem_counts):
-    """Write rows to the output file if their problem count is 1620,
+    """Write rows to the output file if their problem count is 1800,
     i.e., (6 languages x 5 techniques x 50 repetitions) +
-    (6 languages x 1 Copilot x 20 repetitions)."""
+    (6 languages x 1 Copilot x 50 repetitions)."""
     with open(input_file, mode='r', encoding='utf-8') as infile, \
          open(output_file, mode='w', encoding='utf-8', newline='') as outfile:
         reader = csv.DictReader(infile)
         writer = csv.DictWriter(outfile, fieldnames=reader.fieldnames)
         writer.writeheader()
         for row in reader:
-            if problem_counts[row['problem']] == 1620:
+            if problem_counts[row['problem']] == 1800:
                 writer.writerow(row)
 
 def main():
