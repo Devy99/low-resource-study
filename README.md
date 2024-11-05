@@ -67,10 +67,10 @@ All datasets and results from this study are available in our [Zenodo repository
 In particular, the repository is structured as follows:
 - **prompt-prefixes**: list of prompts prepended to the code generation instruction for the in-context learning experiments (translation examples, translation rules, and few-shot)
 
-- **predictions**: includes model evaluation results for each experiment (baseline, in-context evaluation, fine-tuning, and copilot). Each result is stored in the compatible format with the MultiPL-E tool (Gzip compressed files). In particular, for each model and experiment we provide `*.json.gz` files, which contain the model generations for a specific HumanEval problem, and `*.results.json.gz` files, which contain the status of the test suite execution. 
+- **predictions**: includes model evaluation results for each experiment (baseline, in-context evaluation, fine-tuning, and copilot). Each result is stored in the compatible format with the MultiPL-E tool (Gzip compressed files). In particular, for each model and experiment we provide `*.json.gz` files, which contain the model generations for a specific HumanEval problem, and `*.results.json.gz` files, which contain the status of the test suite execution. Under the `finetuning` directory, we have included the model's predictions on the MultiPL-E benchmark for each fine-tuning epoch. The `best-results` folder, instead, groups the predictions of the best checkpoints, whose performance has been described in the paper.
 
 - **results**: provides all the quantitative results from our work. It divides into the following directories:
-    - **accuracies**: includes CSV files containing the pass@1 discussed in our study, organized into subdirectories by model and experiment.
+    - **accuracies**: includes CSV files containing the pass@1 discussed in our study, organized into subdirectories by model and experiment. In folder `epochs-accuracies`, we provide the performance of the 'fine-tuned only' and 'pre-trained and fine-tuned' models for each epoch.
     - **statistical-analyses**: contains the CSV and PDF files that result from the statistical analyses described in the paper. 
     The PDF containing the results of the statistical tests is also available in [this repository](6-statistical-analysis/rq2_stats_analysis_table.pdf).
 
@@ -130,4 +130,4 @@ In case you want to run these scripts on different GPUs, you may need to modify 
 
 
 ### Copilot experiment
-Folder [5-copilot-study](5-copilot-study) contains the scripts to reproduce the Copilot experiment. [1_setup_experiment.sh](5-copilot-study/1_setup_experiment.sh) script generates 20 separate folders, each containing the docstring and the signature of an HumanEval problem and a prompt prefix in case of in-context learning study. Next, you can run the [2_run_copilot.sh](5-copilot-study/2_run_copilot.sh) script to launch Copilot on the generated files. Before running the scripts, ensure that all of the [mentioned dependencies](#prerequisites) are satisfied.
+Folder [5-copilot-study](5-copilot-study) contains the scripts to reproduce the Copilot experiment. [1_setup_experiment.sh](5-copilot-study/1_setup_experiment.sh) script generates 50 separate folders, each containing the docstring and the signature of an HumanEval problem and a prompt prefix in case of in-context learning study. Next, you can run the [2_run_copilot.sh](5-copilot-study/2_run_copilot.sh) script to launch Copilot on the generated files. Before running the scripts, ensure that all of the [mentioned dependencies](#prerequisites) are satisfied.
